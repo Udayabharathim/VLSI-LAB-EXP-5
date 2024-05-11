@@ -26,37 +26,37 @@ STEP:12 Load the Bit file into the SPARTAN 6 FPGA <br>
 
 ## VERILOG CODE:
 
-module fsm(clk,rst,x,z);
-input clk,rst,x;
-output z;
-reg [2:1] ps,ns;
-parameter s0=2'b00,s1=2'b01,s2=2'b10,s3=2'b11;
-always@(x,posedge clk)
-case(ps)
-s0:if(x)
-ns=s1;
-else
-ns=s0;
-s1:if(x)
-ns=s1;
-else
-ns=s2;
-s2:if(x)
-ns=s3;
-else
-ns=s0;
-s3:if(x)
-ns=s1;
-else
-ns=s0;
-endcase
-always@(posedge clk)
-if(rst)
-ps<=s0;
-else
-ps=ns;
-assign z=(ps==s3);
-endmodule
+module fsm(clk,rst,x,z);<br>
+input clk,rst,x;<br>
+output z;<br>
+reg [2:1] ps,ns;<br>
+parameter s0=2'b00,s1=2'b01,s2=2'b10,s3=2'b11;<br>
+always@(x,posedge clk)<br>
+case(ps)<br>
+s0:if(x)<br>
+ns=s1;<br>
+else<br>
+ns=s0;<br>
+s1:if(x)<br>
+ns=s1;<br>
+else<br>
+ns=s2;<br>
+s2:if(x)<br>
+ns=s3;<br>
+else<br>
+ns=s0;<br>
+s3:if(x)<br>
+ns=s1;<br>
+else<br>
+ns=s0;<br>
+endcase<br>
+always@(posedge clk)<br>
+if(rst)<br>
+ps<=s0;<br>
+else<br>
+ps=ns;<br>
+assign z=(ps==s3);<br>
+endmodule<br>
 
 ## OUTPUT:
 
