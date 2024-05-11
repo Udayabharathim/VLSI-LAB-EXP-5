@@ -1,14 +1,11 @@
-# VLSI-LAB-EXP-5
-SIMULATION AND IMPLEMENTATION OF FINITE STATE MACHINE
+# SIMULATION AND IMPLEMENTATION OF FINITE STATE MACHINE
 
-AIM: To simulate and synthesis finite state machine using Xilinx ISE.
+## AIM: 
+To simulate and synthesis finite state machine using Xilinx ISE.
 
-**APPARATUS REQUIRED: **
+## APPARATUS REQUIRED: VIVADO 2023.2
 
-Xilinx 14.7 
-Spartan6 FPGA
-
-**PROCEDURE: **
+## PROCEDURE:
 STEP:1 Start the Xilinx navigator, Select and Name the New project.
 STEP:2 Select the device family, device, package and speed. 
 STEP:3 Select new source in the New Project and select Verilog Module as the Source type. 
@@ -22,20 +19,53 @@ STEP:10 Double click on the Implement Design and double click on the Generate Pr
 STEP:11 On the board, by giving required input, the LEDs starts to glow light, indicating the output.
 STEP:12 Load the Bit file into the SPARTAN 6 FPGA 
 
-Logic Diagram :
-
-![image](https://github.com/navaneethans/VLSI-LAB-EXP-5/assets/6987778/34ec5d63-2b3b-4511-81ef-99f4572d5869)
+## Logic Diagram :
 
 
-VERILOG CODE:
+![image](https://github.com/Udayabharathim/VLSI-LAB-EXP-5/assets/160568654/730824c5-4c9c-4e38-bbc0-db548c4fb758)
 
-----Type Verilog Code
+## VERILOG CODE:
 
-OUTPUT:
+module fsm(clk,rst,x,z);
+input clk,rst,x;
+output z;
+reg [2:1] ps,ns;
+parameter s0=2'b00,s1=2'b01,s2=2'b10,s3=2'b11;
+always@(x,posedge clk)
+case(ps)
+s0:if(x)
+ns=s1;
+else
+ns=s0;
+s1:if(x)
+ns=s1;
+else
+ns=s2;
+s2:if(x)
+ns=s3;
+else
+ns=s0;
+s3:if(x)
+ns=s1;
+else
+ns=s0;
+endcase
+always@(posedge clk)
+if(rst)
+ps<=s0;
+else
+ps=ns;
+assign z=(ps==s3);
+endmodule
 
------Place a Waveform Generated from Xilinx ISE------------
+## OUTPUT:
 
-RESULT:
+![Screenshot 2024-04-16 143129](https://github.com/Udayabharathim/VLSI-LAB-EXP-5/assets/160568654/8140de90-7746-46ba-8aed-bf2341e41b32)
+
+
+
+## RESULT:
+The simulate and synthesis of finite state machine using VIVADO is successfully verified.
 
 
 
